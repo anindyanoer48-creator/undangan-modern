@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>The Wedding of Raditya &amp; Amanda | Undangan Pernikahan</title>
+  <meta name="description" content="Undangan Pernikahan Raditya Pratama &amp; Amanda Kirana. Sabtu, 24 Oktober 2026 di The Glass House, Jakarta.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+  
+  <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans, Amiri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="locked">
+
+  <!-- ==========================================================================
+       BACKGROUND AUDIO ELEMENT
+       ========================================================================== -->
+  <audio id="wedding-music" loop preload="auto">
+    <source src="assets/audio/payung-teduh-akad.m4a" type="audio/mp4">
+    <source src="assets/audio/payung-teduh-akad.webm" type="audio/webm">
+    Browser Anda tidak mendukung pemutar audio.
+  </audio>
+
+  <!-- ==========================================================================
+       TOAST NOTIFICATION CONTAINER
+       ========================================================================== -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- ==========================================================================
+       FLOATING MUSIC CONTROLLER
+       ========================================================================== -->
+  <div class="floating-audio-widget" id="audio-widget">
+    <span class="audio-tooltip" id="audio-tooltip">Payung Teduh - Akad</span>
+    <button class="audio-btn" id="audio-toggle-btn" aria-label="Putar Musik">
+      <svg class="disc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="12" cy="12" r="10"></circle>
+        <circle cx="12" cy="12" r="3"></circle>
+        <circle cx="12" cy="12" r="1" fill="currentColor"></circle>
+      </svg>
+      <div class="eq-bars">
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+      </div>
+    </button>
+  </div>
+
+  <!-- ==========================================================================
+       COVER GATE / SAMPUL PEMBUKA (FULLSCREEN MODAL)
+       ========================================================================== -->
+  <div id="cover-gate" role="dialog" aria-modal="true" aria-label="Sampul Undangan Pernikahan">
+    <div class="cover-bg-frame"></div>
+    <div class="cover-content">
+      <!-- Proportional Monogram Badge -->
+      <div class="monogram-badge">
+        <span class="monogram-initial">R</span>
+        <span class="monogram-ampersand">&amp;</span>
+        <span class="monogram-initial">A</span>
+      </div>
+
+      <p class="cover-subtitle">Walimatul 'Ursy</p>
+
+      <h1 class="cover-title">
+        <span class="name-part">Raditya</span>
+        <span class="ampersand-sign">&amp;</span>
+        <span class="name-part">Amanda</span>
+      </h1>
+      
+      <div class="cover-guest-card">
+        <p class="guest-intro">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+        <h2 class="guest-name" id="guest-name">Tamu Undangan</h2>
+      </div>
+
+      <button type="button" class="btn-open-invitation" id="btn-open-invitation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <span>Buka Undangan</span>
+      </button>
+
+      <p class="music-notice">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18V5l12-2v13"></path>
+          <circle cx="6" cy="18" r="3"></circle>
+          <circle cx="18" cy="16" r="3"></circle>
+        </svg>
+        <span>Lagu: Payung Teduh: Akad</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       TOP NAVIGATION BAR (DESKTOP)
+       ========================================================================== -->
+  <header class="top-nav" id="top-nav">
+    <div class="nav-container">
+      <a href="#hero" class="nav-brand">
+        <span>R</span>
+        <span style="font-style:italic; color:var(--color-accent); font-size:0.9em;">&amp;</span>
+        <span>A</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero">Beranda</a></li>
+        <li><a href="#mempelai">Mempelai</a></li>
+        <li><a href="#acara">Acara</a></li>
+        <li><a href="#susunan-acara">Susunan Acara</a></li>
+        <li><a href="#dokumentasi">Dokumentasi</a></li>
+        <li><a href="#lokasi">Lokasi</a></li>
+        <li><a href="#ucapan">RSVP &amp; Doa</a></li>
+        <li><a href="#hadiah">Tanda Kasih</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MOBILE BOTTOM NAVIGATION BAR
+       5 core quick-jump items for optimal mobile comfort
+       ========================================================================== -->
+  <nav class="mobile-bottom-nav" aria-label="Navigasi Bawah">
+    <a href="#hero" class="mobile-nav-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+      <span>Beranda</span>
+    </a>
+    <a href="#mempelai" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      <span>Mempelai</span>
+    </a>
+    <a href="#acara" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+      <span>Acara</span>
+    </a>
+    <a href="#dokumentasi" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+      <span>Galeri</span>
+    </a>
+    <a href="#ucapan" class="mobile-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      <span>RSVP</span>
+    </a>
+  </nav>
+
+  <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+  <header class="hero-section" id="hero">
+    <div class="container">
+      <div class="fade-in-up">
+        <p class="hero-subtitle">The Wedding Celebration of</p>
+        <h1 class="hero-title">
+          <span class="name-part">Raditya</span>
+          <span class="ampersand-sign">&amp;</span>
+          <span class="name-part">Amanda</span>
+        </h1>
+        
+        <div class="hero-date-venue">
+          <span>Sabtu, 24 Oktober 2026</span>
+          <span class="hero-separator">/</span>
+          <span>The Glass House, Jakarta</span>
+        </div>
+      </div>
+
+      <div class="hero-image-wrap fade-in-up">
+        <img src="assets/images/hero-couple.jpg" alt="Raditya dan Amanda" loading="eager">
+      </div>
+
+      <!-- COUNTDOWN TIMER -->
+      <div class="countdown-container fade-in-up" aria-label="Hitung Mundur Pernikahan">
+        <div class="countdown-card">
+          <span class="countdown-number" id="days">00</span>
+          <span class="countdown-label">Hari</span>
+        </div>
+        <div class="countdown-card">
+          <span class="countdown-number" id="hours">00</span>
+          <span class="countdown-label">Jam</span>
+        </div>
+        <div class="countdown-card">
+          <span class="countdown-number" id="minutes">00</span>
+          <span class="countdown-label">Menit</span>
+        </div>
+        <div class="countdown-card">
+          <span class="countdown-number" id="seconds">00</span>
+          <span class="countdown-label">Detik</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       AYAT SUCI / QUOTE SECTION
+       ========================================================================== -->
+  <section class="quote-section" id="quote">
+    <div class="container-narrow fade-in-up">
+      <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+      </svg>
+      <p class="quote-arabic">
+        وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
+      </p>
+      <p class="quote-translation">
+        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir."
+      </p>
+      <p class="quote-source">QS. Ar-Rum: 21</p>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MEMPELAI (THE COUPLE WITH MINIMALIST PROFILE ICONS)
+       ========================================================================== -->
+  <section class="couple-section" id="mempelai">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Sang Mempelai</span>
+        <h2 class="section-title">Dua Jiwa, Satu Janji</h2>
+        <p class="section-desc">Dengan memohon rahmat dan ridho Allah Subhanahu wa Ta'ala, kami bermaksud melangsungkan ikrar suci pernikahan.</p>
+        <div class="hairline-divider"></div>
+      </div>
+
+      <div class="couple-grid">
+        <!-- Groom Card with Minimalist Profile Icon -->
+        <div class="couple-card fade-in-up">
+          <div class="couple-avatar-wrap">
+            <svg class="couple-avatar-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="24" cy="15" r="7.5" stroke-width="1.8" />
+              <path d="M12 40c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke-width="1.8" />
+              <path d="M20 28l4 6 4-6" stroke-width="1.5" />
+              <path d="M22 34l2 1.5 2-1.5" stroke-width="1.5" />
+            </svg>
+          </div>
+          <h3 class="couple-name">Raditya Pratama, <span class="couple-degree">S.T.</span></h3>
+          <p class="couple-parent">Putra pertama dari pasangan<br>Bpk. Bambang Wijaya &amp; Ibu Sri Rahayu</p>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="couple-social">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            <span>@radityapratama</span>
+          </a>
+        </div>
+
+        <!-- Proportional Ampersand Divider Connector -->
+        <div class="couple-connector fade-in-up">
+          <span class="connector-line"></span>
+          <span class="connector-badge">&amp;</span>
+          <span class="connector-line"></span>
+        </div>
+
+        <!-- Bride Card with Minimalist Profile Icon -->
+        <div class="couple-card fade-in-up">
+          <div class="couple-avatar-wrap">
+            <svg class="couple-avatar-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="24" cy="15" r="7.5" stroke-width="1.8" />
+              <path d="M11 40c0-7.18 5.82-13 13-13s13 5.82 13 13" stroke-width="1.8" />
+              <path d="M17 10.5c2-2.5 4.5-3.5 7-3.5s5 1 7 3.5" stroke-width="1.4" stroke-dasharray="1.5 2" />
+              <path d="M19 28c1.5 2 3.2 3 5 3s3.5-1 5-3" stroke-width="1.5" />
+            </svg>
+          </div>
+          <h3 class="couple-name">Amanda Kirana, <span class="couple-degree">S.Ds.</span></h3>
+          <p class="couple-parent">Putri bungsu dari pasangan<br>Bpk. Hendra Kusuma &amp; Ibu Dewi Anggraini</p>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="couple-social">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            <span>@amandakirana</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       RANGKAIAN ACARA (EVENTS OVERVIEW)
+       ========================================================================== -->
+  <section class="events-section" id="acara">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Waktu &amp; Tempat</span>
+        <h2 class="section-title">Rangkaian Acara</h2>
+        <p class="section-desc">Merupakan suatu kehormatan bagi kami atas kehadiran dan doa restu Bapak/Ibu/Saudara/i sekalian.</p>
+        <div class="hairline-divider"></div>
+      </div>
+
+      <div class="events-grid">
+        <!-- Akad Nikah -->
+        <div class="event-card fade-in-up">
+          <div class="event-icon-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="8" cy="12" r="5"></circle>
+              <circle cx="16" cy="12" r="5"></circle>
+            </svg>
+          </div>
+          <h3 class="event-title">Akad Nikah</h3>
+          <div class="event-datetime">
+            <p class="event-day">Sabtu, 24 Oktober 2026</p>
+            <p class="event-time">Pukul 08.00 - 10.00 WIB</p>
+          </div>
+          <div class="event-location">
+            <p class="event-venue">The Glass House Pavilion</p>
+            <p class="event-address">Jl. Wijaya Timur No. 18, Kebayoran Baru, Jakarta Selatan</p>
+          </div>
+          <div class="event-actions">
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Akad+Nikah+Raditya+%26+Amanda&dates=20261024T010000Z/20261024T030000Z&details=Akad+Nikah+Raditya+Pratama+dan+Amanda+Kirana&location=The+Glass+House,+Jl.+Wijaya+Timur+No.+18,+Jakarta+Selatan" target="_blank" rel="noopener noreferrer" class="btn-outline-gold">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <span>Simpan ke Kalender</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Resepsi Pernikahan -->
+        <div class="event-card fade-in-up">
+          <div class="event-icon-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+          </div>
+          <h3 class="event-title">Resepsi Pernikahan</h3>
+          <div class="event-datetime">
+            <p class="event-day">Minggu, 25 Oktober 2026</p>
+            <p class="event-time">Pukul 11.30 - 14.30 WIB</p>
+          </div>
+          <div class="event-location">
+            <p class="event-venue">Grand Ballroom The Glass House</p>
+            <p class="event-address">Jl. Wijaya Timur No. 18, Kebayoran Baru, Jakarta Selatan</p>
+          </div>
+          <div class="event-actions">
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Resepsi+Pernikahan+Raditya+%26+Amanda&dates=20261025T043000Z/20261025T073000Z&details=Resepsi+Pernikahan+Raditya+Pratama+dan+Amanda+Kirana&location=The+Glass+House,+Jl.+Wijaya+Timur+No.+18,+Jakarta+Selatan" target="_blank" rel="noopener noreferrer" class="btn-outline-gold">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <span>Simpan ke Kalender</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SUSUNAN ACARA (RUNDOWN / AGENDA SECTION)
+       ========================================================================== -->
+  <section class="rundown-section" id="susunan-acara">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Agenda Prosesi</span>
+        <h2 class="section-title">Susunan Acara</h2>
+        <p class="section-desc">Jadwal rinci rangkaian prosesi sakral akad dan resepsi pernikahan.</p>
+        <div class="hairline-divider"></div>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="rundown-nav fade-in-up">
+        <button type="button" class="rundown-tab-btn active" data-tab="tab-akad">
+          Hari Pertama: Akad Nikah
+        </button>
+        <button type="button" class="rundown-tab-btn" data-tab="tab-resepsi">
+          Hari Kedua: Resepsi Pernikahan
+        </button>
+      </div>
+
+      <!-- Tab 1: Akad Nikah -->
+      <div class="rundown-content-pane active" id="tab-akad">
+        <div class="rundown-header-box fade-in-up">
+          <h3 class="rundown-day-title">Prosesi Akad Nikah &amp; Doa Syukuran</h3>
+          <p class="rundown-day-date">Sabtu, 24 Oktober 2026 di The Glass House Pavilion</p>
+        </div>
+
+        <div class="rundown-timeline">
+          <div class="rundown-item fade-in-up">
+            <span class="rundown-time-badge">07.30 - 08.00 WIB</span>
+            <div class="rundown-info">
+              <h4 class="rundown-activity">Penyambutan Keluarga &amp; Tamu</h4>
+              <p class="rundown-note">Kedatangan keluarga besar kedua mempelai, saksi nikah, serta para tamu undangan sesi akad.</p>
+            </div>
+          </div>
+
+          <div class="rundown-item fade-in-up">
+            <span class="rundown-time-badge">08.00 - 08.30 WIB</span>
+            <div class="rundown-info">
+              <h4 class="rundown-activity">Kalam Ilahi &amp; Khutbah Nikah</h4>
+              <p class="rundown-note">Pembacaan ayat suci Al-Qur'an dilanjutkan dengan penyampaian khutbah nikah oleh penghulu KUA.</p>
+            </div>
+          </div>
+
+          <div class="rundown-item fade-in-up">
+            <span class="rundown-time-badge">08.30 - 09.15 WIB</span>
+            <div class="rundown-info">
+              <h4 class="rundown-activity">Ijab Qabul &amp; Penyerahan Mahar</h4>
+              <p class="rundown-note">Pengucapan ikrar ijab qabul sakral, penandatanganan dokumen pernikahan, serta penyerahan mahar.</p>
+            </div>
+          </div>
+
+          <div class="rundown-item fade-in-up">
+            <span class="rundown-time-badge">09.15 - 10.00 WIB</span>
+            <div class="rundown-info">
+              <h4 class="rundown-activity">Prosesi Sungkeman &amp; Ramah Tamah</h4>
+              <p class="rundown-note">Ungkapan bakti dan permohonan doa restu kepada kedua orang tua, diakhiri dengan santap pagi bersama.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Resepsi Pernikahan -->
+      <div class="rundown-content-pane" id="tab-resepsi">
+        <div class="rundown-header-box fade-in-up">
+          <h3 class="rundown-day-title">Perayaan Resepsi Pernikahan</h3>
+          <p class="rundown-day-date">Minggu, 25 Oktober 2026 di Grand Ballroom The Glass House</p>
+        </div>
+
+        <div class="rundown-timeline">
+          <div class="rundown-item fade-in-up">
+            <span class="rundown-time-badge">11.00 - 11.30 WIB</span>
+            <div class="rundown-info">
+              <h4 class="rundown-activity">Registrasi &amp; Penyambutan Tamu</h4>
+              <p class="rundown-note">Pengisian buku tamu digital, penyerahan souvenir, dan penyambutan di selasar ballroom.</p>
+            </div>
+          </div>
+
+          <div class="rundown-item fade-in-up">
+            <span class="rundown-time-badge">11.30 - 12.00 WIB</span>
+            <div class="rundown-info">
+              <h4 class="rundown-activity">Kirab Pengantin &amp; Sambutan Keluarga</h4>
+              <p class="rundown-note">Prosesi masuk kedua mempelai beserta keluarga inti, diiringi alunan musik dan sambutan perwakilan keluarga.</p>
+            </div>
+          </div>
+
+          <div class="rundown-item fade-in-up">
+            <span class="rundown-time-badge">12.00 - 14.15 WIB</span>
+            <div class="rundown-info">
+              <h4 class="rundown-activity">Santap Siang &amp; Foto Bersama</h4>
+              <p class="rundown-note">Jamuan santap siang prasmanan, ramah tamah, serta sesi foto bergantian bersama kedua mempelai.</p>
+            </div>
+          </div>
+
+          <div class="rundown-item fade-in-up">
+            <span class="rundown-time-badge">14.15 - 14.30 WIB</span>
+            <div class="rundown-info">
+              <h4 class="rundown-activity">Penutupan &amp; Pelepasan Tamu</h4>
+              <p class="rundown-note">Ungkapan terima kasih dari kedua mempelai kepada seluruh tamu undangan yang telah hadir.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       DOKUMENTASI (GALERI FOTO SECTION)
+       ========================================================================== -->
+  <section class="gallery-section" id="dokumentasi">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Momen Bahagia</span>
+        <h2 class="section-title">Dokumentasi &amp; Galeri</h2>
+        <p class="section-desc">Kumpulan potret hangat yang merekam perjalanan kasih dan persiapan menuju hari bahagia kami.</p>
+        <div class="hairline-divider"></div>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- Foto 1 -->
+        <div class="gallery-item fade-in-up" data-img="assets/images/gallery-1.jpg" data-caption="Potret Bersama dalam Balutan Kasih">
+          <img src="assets/images/gallery-1.jpg" alt="Dokumentasi 1" loading="lazy">
+          <div class="gallery-overlay">
+            <div class="gallery-zoom-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 2 -->
+        <div class="gallery-item fade-in-up" data-img="assets/images/gallery-2.jpg" data-caption="Dekorasi Meja Jamuan Bernuansa Minimalis">
+          <img src="assets/images/gallery-2.jpg" alt="Dokumentasi 2" loading="lazy">
+          <div class="gallery-overlay">
+            <div class="gallery-zoom-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 3 -->
+        <div class="gallery-item fade-in-up" data-img="assets/images/gallery-3.jpg" data-caption="Cincin Pengikat Ikrar Suci">
+          <img src="assets/images/gallery-3.jpg" alt="Dokumentasi 3" loading="lazy">
+          <div class="gallery-overlay">
+            <div class="gallery-zoom-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 4 -->
+        <div class="gallery-item fade-in-up" data-img="assets/images/gallery-4.jpg" data-caption="Tatap Penuh Ketulusan dan Makna">
+          <img src="assets/images/gallery-4.jpg" alt="Dokumentasi 4" loading="lazy">
+          <div class="gallery-overlay">
+            <div class="gallery-zoom-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 5 -->
+        <div class="gallery-item fade-in-up" data-img="assets/images/gallery-5.jpg" data-caption="Buket Bunga Pengantin Putih">
+          <img src="assets/images/gallery-5.jpg" alt="Dokumentasi 5" loading="lazy">
+          <div class="gallery-overlay">
+            <div class="gallery-zoom-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 6 -->
+        <div class="gallery-item fade-in-up" data-img="assets/images/gallery-6.jpg" data-caption="Langkah Bersama Menyongsong Masa Depan">
+          <img src="assets/images/gallery-6.jpg" alt="Dokumentasi 6" loading="lazy">
+          <div class="gallery-overlay">
+            <div class="gallery-zoom-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Lightbox Modal -->
+  <div id="gallery-modal" role="dialog" aria-modal="true" aria-label="Pratinjau Foto Dokumentasi">
+    <div class="modal-content">
+      <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Tutup Pratinjau">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <img src="" alt="" class="modal-img" id="modal-img">
+      <p class="modal-caption" id="modal-caption"></p>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       LOKASI (GOOGLE MAPS EMBED & NAVIGATION)
+       ========================================================================== -->
+  <section class="location-section" id="lokasi">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Petunjuk Arah</span>
+        <h2 class="section-title">Lokasi Acara</h2>
+        <p class="section-desc">Silakan gunakan peta navigasi di bawah ini untuk memudahkan perjalanan menuju lokasi resepsi.</p>
+        <div class="hairline-divider"></div>
+      </div>
+
+      <div class="map-wrapper fade-in-up">
+        <div class="map-iframe-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.195204481023!2d106.8122396!3d-6.2379899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1503b0d2b1f%3A0x6b2b5420317e0b!2sKebayoran%20Baru%2C%20Jakarta%20Selatan!5e0!3m2!1sid!2sid!4v1700000000000" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Peta Lokasi Acara The Glass House">
+          </iframe>
+        </div>
+        <div class="map-details">
+          <div>
+            <h3 class="map-venue-title">The Glass House</h3>
+            <p class="map-venue-text">Jl. Wijaya Timur No. 18, Kebayoran Baru, Jakarta Selatan</p>
+          </div>
+          <a href="https://maps.google.com/?q=The+Glass+House+Jakarta+Wijaya" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+            </svg>
+            <span>Buka Google Maps</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       OUR STORY / TIMELINE
+       ========================================================================== -->
+  <section class="story-section" id="kisah">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Perjalanan Kasih</span>
+        <h2 class="section-title">Kisah Kami</h2>
+        <p class="section-desc">Sebuah ikhtiar yang bermula dari tatap, tumbuh dalam doa, dan bermuara pada akad suci.</p>
+        <div class="hairline-divider"></div>
+      </div>
+
+      <div class="story-timeline">
+        <!-- 2020 -->
+        <div class="story-item fade-in-up">
+          <div class="story-dot"></div>
+          <div class="story-card">
+            <span class="story-year">Tahun 2020</span>
+            <h3 class="story-title">Pertemuan Pertama</h3>
+            <p class="story-desc">Pertama kali dipertemukan dalam sebuah seminar arsitektur di kampus. Percakapan sederhana yang perlahan membuka ruang saling memahami.</p>
+          </div>
+        </div>
+
+        <!-- 2023 -->
+        <div class="story-item fade-in-up">
+          <div class="story-dot"></div>
+          <div class="story-card">
+            <span class="story-year">Tahun 2023</span>
+            <h3 class="story-title">Komitmen Bersama</h3>
+            <p class="story-desc">Setelah saling mengenal dan menyatukan visi, kami memberanikan diri untuk saling berikrar menjalin komitmen dengan restu kedua orang tua.</p>
+          </div>
+        </div>
+
+        <!-- 2026 -->
+        <div class="story-item fade-in-up">
+          <div class="story-dot"></div>
+          <div class="story-card">
+            <span class="story-year">Tahun 2026</span>
+            <h3 class="story-title">Menuju Akad Suci</h3>
+            <p class="story-desc">Langkah awal kami mengarungi bahtera kehidupan bersama, mengikat janji suci di hadapan Allah SWT dan orang-orang terkasih.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       RSVP & BUKU TAMU DIGITAL (UCAPAN)
+       ========================================================================== -->
+  <section class="rsvp-section" id="ucapan">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Doa &amp; Kehadiran</span>
+        <h2 class="section-title">Konfirmasi &amp; Ucapan</h2>
+        <p class="section-desc">Mohon konfirmasikan kehadiran Anda dan sampaikan doa restu terbaik untuk kedua mempelai.</p>
+        <div class="hairline-divider"></div>
+      </div>
+
+      <div class="rsvp-guestbook-grid">
+        <!-- Form RSVP -->
+        <div class="form-box fade-in-up">
+          <h3 class="form-title">Konfirmasi Kehadiran</h3>
+          <p class="form-desc">Isi formulir berikut untuk membantu kami mempersiapkan jamuan terbaik.</p>
+
+          <form id="rsvp-form">
+            <div class="form-group">
+              <label for="rsvp-name" class="form-label">Nama Lengkap</label>
+              <input type="text" id="rsvp-name" class="form-input" placeholder="Masukkan nama Anda" required>
+            </div>
+
+            <div class="form-group">
+              <label for="rsvp-status" class="form-label">Konfirmasi Kehadiran</label>
+              <select id="rsvp-status" class="form-select" required>
+                <option value="hadir">Insya Allah Hadir</option>
+                <option value="tidak">Mohon Maaf, Berhalangan Hadir</option>
+                <option value="ragu">Masih Belum Pasti</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="rsvp-guests" class="form-label">Jumlah Tamu</label>
+              <select id="rsvp-guests" class="form-select">
+                <option value="1">1 Orang</option>
+                <option value="2">2 Orang</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="rsvp-message" class="form-label">Pesan &amp; Doa Restu</label>
+              <textarea id="rsvp-message" class="form-textarea" placeholder="Tuliskan ucapan dan doa terbaik Anda untuk kedua mempelai..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              <span>Kirim Konfirmasi &amp; Doa</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Live Guestbook Feed -->
+        <div class="guestbook-box fade-in-up">
+          <div class="guestbook-header">
+            <h3 class="form-title" style="margin-bottom:0;">Untaian Doa Restu</h3>
+            <span class="guestbook-count" id="wishes-count">0 Doa Restu</span>
+          </div>
+
+          <div class="guestbook-list" id="wishes-list" aria-live="polite">
+            <!-- Rendered by main.js from localStorage -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       TANDA KASIH / HADIAH DIGITAL
+       ========================================================================== -->
+  <section class="gift-section" id="hadiah">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Tanda Kasih</span>
+        <h2 class="section-title">Amplop Digital</h2>
+        <p class="section-desc">Doa restu Anda merupakan karunia terindah bagi kami. Namun apabila Anda berkehendak memberikan tanda kasih, dapat melalui tautan rekening di bawah ini.</p>
+        <div class="hairline-divider"></div>
+      </div>
+
+      <div class="gift-cards-grid">
+        <!-- Rekening BCA -->
+        <div class="bank-card fade-in-up">
+          <p class="bank-logo">BANK BCA</p>
+          <p class="bank-number">8820 1928 31</p>
+          <p class="bank-holder">a.n. Raditya Pratama</p>
+          <button type="button" class="btn-copy" data-copy="8820192831" data-label="Nomor Rekening BCA">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Salin Nomor Rekening</span>
+          </button>
+        </div>
+
+        <!-- Rekening Mandiri -->
+        <div class="bank-card fade-in-up">
+          <p class="bank-logo">BANK MANDIRI</p>
+          <p class="bank-number">1370 0192 8491 2</p>
+          <p class="bank-holder">a.n. Amanda Kirana</p>
+          <button type="button" class="btn-copy" data-copy="1370019284912" data-label="Nomor Rekening Mandiri">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Salin Nomor Rekening</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Kado Fisik -->
+      <div class="physical-gift-card fade-in-up">
+        <h3 class="physical-gift-title">Kirim Kado Fisik</h3>
+        <p class="physical-gift-address">
+          Kediaman Mempelai: Cluster Serenity Hills Blok B3 No. 12, Jl. Wijaya Kusuma, Cilandak, Jakarta Selatan 12430 (Penerima: Amanda Kirana / 0812-3456-7890)
+        </p>
+        <button type="button" class="btn-copy" data-copy="Cluster Serenity Hills Blok B3 No. 12, Jl. Wijaya Kusuma, Cilandak, Jakarta Selatan 12430 (Penerima: Amanda Kirana / 0812-3456-7890)" data-label="Alamat Pengiriman">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span>Salin Alamat Pengiriman</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PROTOKOL ACARA & DRESS CODE
+       ========================================================================== -->
+  <section class="protocol-section" id="protokol">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Panduan Tamu</span>
+        <h2 class="section-title">Etiket &amp; Dress Code</h2>
+        <p class="section-desc">Demi kenyamanan bersama, kami menyarankan para tamu undangan untuk memperhatikan panduan berikut.</p>
+        <div class="hairline-divider"></div>
+      </div>
+
+      <div class="protocol-grid">
+        <div class="protocol-item fade-in-up">
+          <div class="protocol-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path>
+            </svg>
+          </div>
+          <p class="protocol-text">Dress Code: Formal Putih / Earth Tone</p>
+        </div>
+
+        <div class="protocol-item fade-in-up">
+          <div class="protocol-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <p class="protocol-text">Hadir Tepat Waktu Sesuai Sesi Undangan</p>
+        </div>
+
+        <div class="protocol-item fade-in-up">
+          <div class="protocol-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <p class="protocol-text">Menjaga Kebersihan &amp; Ketertiban</p>
+        </div>
+
+        <div class="protocol-item fade-in-up">
+          <div class="protocol-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+          </div>
+          <p class="protocol-text">Konfirmasi RSVP Sebelum 17 Oktober 2026</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer>
+    <div class="container-narrow fade-in-up">
+      <div class="monogram-badge" style="margin: 0 auto 20px;">
+        <span class="monogram-initial">R</span>
+        <span class="monogram-ampersand">&amp;</span>
+        <span class="monogram-initial">A</span>
+      </div>
+      <h2 class="footer-title">
+        <span class="name-part">Raditya</span>
+        <span class="ampersand-sign">&amp;</span>
+        <span class="name-part">Amanda</span>
+      </h2>
+      <p class="footer-closing">
+        Atas kehadiran dan doa restu Bapak/Ibu/Saudara/i sekalian, kami mengucapkan terima kasih yang tulus dari lubuk hati terdalam.
+      </p>
+      <p class="footer-credit">
+        Wassalamu'alaikum Warahmatullahi Wabarakatuh
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
